@@ -1,0 +1,61 @@
+### Access salary of david as carol
+GET localhost:8080/salary/david
+Authorization: Basic carol pass
+Accept: application/json
+
+### Access salary of david as david himself
+GET localhost:8080/salary/david
+Authorization: Basic david pass
+Accept: application/json
+
+### Access salary of david as john from HR
+GET localhost:8080/salary/david
+Authorization: Basic john pass
+Accept: application/json
+
+### Access salary of david as bob, davids direct manager
+GET localhost:8080/salary/david
+Authorization: Basic bob pass
+Accept: application/json
+
+### Access salary of david as alice, davids in-direct manager
+GET localhost:8080/salary/david
+Authorization: Basic alice pass
+Accept: application/json
+
+#
+
+### Access salary of bob as john from HR
+GET localhost:8080/salary/bob
+Authorization: Basic john pass
+Accept: application/json
+
+### Access salary of bob as bob
+GET localhost:8080/salary/bob
+Authorization: Basic bob pass
+Accept: application/json
+
+### Access salary of bob as david
+GET localhost:8080/salary/bob
+Authorization: Basic david pass
+Accept: application/json
+
+### Access salary of bob as alice
+GET localhost:8080/salary/bob
+Authorization: Basic alice pass
+Accept: application/json
+
+### Access document of bob as bob
+GET localhost:8080/documents/2
+Authorization: Basic bob pass
+Accept: application/json
+
+### Access document of bob as david
+GET localhost:8080/documents/2
+Authorization: Basic david pass
+Accept: application/json
+
+### Access document of bob as alice
+GET localhost:8080/documents/2
+Authorization: Basic alice pass
+Accept: application/json
