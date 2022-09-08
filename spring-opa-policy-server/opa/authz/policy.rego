@@ -1,9 +1,5 @@
 package authz
 
-policy_version := 2
-
-
-
 default access = {
     "allowed": false,
     "msg": "insufficient access",
@@ -64,8 +60,6 @@ allow(hint) = result {
     result = {
         "allowed": true,
         "hint": hint,
-        "policy_version": policy_version,
-        "data_version": data.revision.version,
     }
 }
 
@@ -89,8 +83,8 @@ is_owner_or_subordinate_access {
 
 
 # helper to resolve user graph
-users_graph[data.users[username].name] = edges {
-  edges := data.users[username].subordinates
+users_graph[data.authz.users[username].name] = edges {
+  edges := data.authz.users[username].subordinates
 }
 
 # Check what a user can access

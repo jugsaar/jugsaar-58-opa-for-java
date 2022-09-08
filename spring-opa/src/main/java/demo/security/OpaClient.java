@@ -18,7 +18,7 @@ import java.util.Objects;
 @Component("opa")
 public class OpaClient {
 
-    private static final String URI = "http://localhost:8181/v1/data/authz/access";
+    private static final String URI = "http://localhost:8181/v1/data/authz/access?metrics";
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 

@@ -16,4 +16,8 @@ curl -X PUT --data-binary @opa/policy.rego  localhost:8181/v1/policies/authz
 curl -X PUT -H "Content-Type: application/json" -d '{"version": 1}' localhost:8181/v1/data/revision
 curl -X PUT -H "Content-Type: application/json" -d @opa/users.json localhost:8181/v1/data/users
 
+---
 
+Fetch policies from policy server
+
+docker run --net=host -v $PWD/opa/config.yaml:/config.yaml openpolicyagent/opa:0.43.0-envoy-2 run --server -c /config.yaml

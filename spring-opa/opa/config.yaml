@@ -1,0 +1,14 @@
+services:
+  - name: acmecorp
+    url: http://localhost:8182/service/v1
+    credentials:
+      bearer:
+        token: "bGFza2RqZmxha3NkamZsa2Fqc2Rsa2ZqYWtsc2RqZmtramRmYWxkc2tm"
+
+bundles:
+  authz:
+    service: acmecorp
+    resource: policies/current/bundle.tar.gz
+    polling:
+        min_delay_seconds: 10
+        max_delay_seconds: 20
