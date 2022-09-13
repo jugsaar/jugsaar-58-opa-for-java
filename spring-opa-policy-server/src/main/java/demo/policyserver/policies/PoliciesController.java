@@ -16,13 +16,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Exposes a dynamically generated OPA policy bundle to be consumed by policy agent side-cars.
+ */
 @Slf4j
 @RestController
 @RequestMapping("/service/v1/policies")
 public class PoliciesController {
 
     @GetMapping("/current/bundle.tar.gz")
-    void currentPolicyBundle(HttpServletResponse response) throws Exception {
+    public void currentPolicyBundle(HttpServletResponse response) throws Exception {
 
         log.info("Fetch current bundle");
 
@@ -62,7 +65,6 @@ public class PoliciesController {
                     var tarEntry = new TarArchiveEntry(file, opaPath.relativize(path).toString());
                     try {
                         tOut.putArchiveEntry(tarEntry);
-                        // copy file to TarArchiveOutputStream
                         Files.copy(path, tOut);
                         tOut.closeArchiveEntry();
                     } catch (IOException e) {

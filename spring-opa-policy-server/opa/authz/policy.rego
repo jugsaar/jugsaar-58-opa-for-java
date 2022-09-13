@@ -48,7 +48,8 @@ access = result {
   input.action == "read"
   input.resource.type == "document"
   #input.resource.owner == input.subject.name
-  is_owner_access
+  # is_owner_access
+  is_owner_or_subordinate_access
 
   # THEN
   result = allow("owner-or-subordinate:access")
