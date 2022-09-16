@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spring-opa" />
         <module name="spring-opa-policy-server" />
+        <module name="quarkus-opa" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="quarkus-opa" options="-parameters" />
       <module name="spring-opa" options="-parameters" />
       <module name="spring-opa-policy-server" options="-parameters" />
     </option>

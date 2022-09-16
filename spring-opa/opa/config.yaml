@@ -1,3 +1,4 @@
+# OPA config file for pulling policies from a remote location
 services:
   - name: acmecorp
     url: http://localhost:8182/service/v1

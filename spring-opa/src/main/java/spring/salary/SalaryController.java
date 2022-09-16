@@ -1,4 +1,4 @@
-package demo.salary;
+package spring.salary;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

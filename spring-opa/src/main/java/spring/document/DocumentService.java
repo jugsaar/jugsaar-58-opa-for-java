@@ -1,4 +1,4 @@
-package demo.document;
+package spring.document;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

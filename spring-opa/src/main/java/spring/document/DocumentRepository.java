@@ -1,4 +1,4 @@
-package demo.document;
+package spring.document;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="spring-opa-policyserver" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" />
+    <module name="spring-opa-policy-server" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="demo.policyserver.SpringOpaPolicyServerApp" />
+    <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

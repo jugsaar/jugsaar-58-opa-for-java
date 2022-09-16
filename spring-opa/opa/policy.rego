@@ -1,4 +1,4 @@
-package authz
+package authz.spring
 
 policy_version := 2
 

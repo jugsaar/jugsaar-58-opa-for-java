@@ -1,9 +1,10 @@
-package demo.document;
+package spring.salary;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,13 +14,14 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @ToString
-public class Document {
+public class Salary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String content;
+    @Column(unique = true)
+    private String username;
 
-    private String owner;
+    private double amount;
 }

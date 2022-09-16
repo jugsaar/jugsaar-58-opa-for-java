@@ -1,8 +1,9 @@
-package demo.security;
+package spring.security;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,19 +13,21 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Slf4j
 @Component("opa")
-public class OpaClient {
+@RequiredArgsConstructor
+public class OpaPolicyEnforcer {
 
-    private static final String URI =
-            // "http://localhost:8181/v1/data/authz/access?metrics";
-            "http://localhost:8181/v1/data/authz/access";
+    private static final String POLICY_PATH =
+            // "/access?metrics";
+            "/access";
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private final RestTemplate restTemplate = new RestTemplate();
+
+    private final OpaProperties opaProperties;
 
     public boolean isAllowed(String action, Map<String, Object> resourceAttributes) {
 
@@ -43,7 +46,9 @@ public class OpaClient {
         var accessRequest = toAccessRequest(input);
         log.info("Authorization request:\n{}", accessRequest.toPrettyString());
 
-        var accessResponse = restTemplate.postForObject(URI, accessRequest, JsonNode.class);
+        var uri = opaProperties.getUri() + POLICY_PATH;
+
+        var accessResponse = restTemplate.postForObject(uri, accessRequest, JsonNode.class);
         log.info("Authorization response:\n{}", accessResponse != null ? accessResponse.toPrettyString() : accessResponse);
 
         if (accessResponse == null) {

@@ -19,7 +19,7 @@ data to the server.
 
 First we start the OPA server container:
 ```
-docker run -p 8181:8181 --name opa-server openpolicyagent/opa:0.44.0-rootless run --server
+docker run -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.44.0-rootless run --server
 ```
 
 Then we initialize the OPA server with our custom policy and some data:
@@ -27,7 +27,7 @@ Then we initialize the OPA server with our custom policy and some data:
 - `users.json` this file contains some user / subordinate mappings that we want to honor in the example 
 ```
 
-curl -X PUT --data-binary @opa/policy.rego  localhost:8181/v1/policies/authz
+curl -X PUT --data-binary @opa/policy.rego  localhost:8181/v1/policies/authz/spring
 curl -X PUT -H "Content-Type: application/json" -d '{"version": 1}' localhost:8181/v1/data/revision
 curl -X PUT -H "Content-Type: application/json" -d @opa/users.json localhost:8181/v1/data/users
 ```
@@ -41,5 +41,5 @@ Note that this example requires the `spring-opa-policy-server` to be running.
 
 First we start the OPA server container:
 ```
-docker run --net=host -v $PWD/opa/config.yaml:/config.yaml openpolicyagent/opa:0.44.0-rootless run --server -c /config.yaml
+docker run --net=host --rm -v $PWD/opa/config.yaml:/config.yaml openpolicyagent/opa:0.44.0-rootless run --server -c /config.yaml
 ```

@@ -1,4 +1,4 @@
-package authz
+package authz.spring
 
 default access = {
     "allowed": false,

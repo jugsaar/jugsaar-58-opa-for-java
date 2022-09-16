@@ -1,4 +1,4 @@
-package demo.salary;
+package spring.salary;
 
 import org.springframework.data.repository.Repository;
 
