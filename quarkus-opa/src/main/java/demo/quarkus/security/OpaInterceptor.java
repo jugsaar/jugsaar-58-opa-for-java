@@ -40,7 +40,11 @@ public class OpaInterceptor {
     }
 
     private String resolvePermission(PreAuthorize authz) {
-        return authz.permission();
+        var permission = authz.permission();
+        if (permission == null || permission.isBlank()) {
+            return null;
+        }
+        return permission;
     }
 
     private static String resolveAction(PreAuthorize authz, Method method) {
@@ -57,7 +61,7 @@ public class OpaInterceptor {
 
         var resource = authz.resource();
         if (resource == null || resource.isBlank()) {
-            return "";
+            return null;
         }
 
         // resolve parameter reference

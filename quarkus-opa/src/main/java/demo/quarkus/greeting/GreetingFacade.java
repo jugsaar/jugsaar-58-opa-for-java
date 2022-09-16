@@ -8,7 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 @RequiredArgsConstructor
-public class GreetingFacade {
+class GreetingFacade {
 
     private final GreetingService greetingService;
 
