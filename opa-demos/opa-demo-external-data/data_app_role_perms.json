@@ -1,0 +1,43 @@
+{
+  "company": {
+    "board": {
+      "parent": "manager",
+      "permissions": ["access:secret"]
+    },
+    "manager": {
+      "parent": "employee",
+      "permissions": ["access:confidential"]
+    },
+    "employee": {
+      "parent": "user",
+      "permissions": ["access:internal"]
+    },
+    "guest": {
+      "parent": "user"
+    },
+    "user": {
+      "parent": "",
+      "permissions": ["access:public"]
+    }
+  },
+  "hr": {
+    "manager": [
+      "create:profile",
+      "view:profile",
+      "update:profile",
+      "view:salary",
+      "update:salary"
+    ],
+    "assistant": ["view:profile", "update:profile", "view:salary"],
+    "employee": ["view:profile", "view:salary"]
+  },
+  "travel": {
+    "manager": ["view:journey", "cancel:journey", "approve:journey"],
+    "employee": [
+      "create:journey",
+      "view:journey",
+      "submit:journey",
+      "cancel:journey"
+    ]
+  }
+}

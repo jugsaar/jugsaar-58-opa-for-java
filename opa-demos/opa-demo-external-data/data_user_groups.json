@@ -1,0 +1,11 @@
+{
+    "default": {
+        "groups": ["all"]
+    },
+    "alice": {
+        "groups": ["hr"]
+    },
+    "bob": {
+        "groups": ["dev"]
+    }
+}

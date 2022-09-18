@@ -1,0 +1,16 @@
+{
+  "alice": {
+    "company": ["employee"],
+    "hr": ["assistant"],
+    "travel": ["employee"]
+  },
+  "joe": {
+    "company": ["employee"],
+    "travel": ["manager"]
+  },
+  "bob": {
+    "company": ["employee"],
+    "hr": ["employee"],
+    "travel": ["employee"]
+  }
+}
