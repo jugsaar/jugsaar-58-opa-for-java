@@ -48,7 +48,9 @@ allow {
 	is_admin
 }
 
+# externalized condition to allow reuse
 is_admin {
+  # rego tries to find a value for the placeholder variable "_" that fulfills this condition 
   input.subject.roles[_] = "admin"
 }
 ```
