@@ -27,18 +27,22 @@ Revised rego policy with role check
 ```rego
 package app.demo
 
+import future.keywords.in
+
 default allow := false
 
 allow {
 	input.method = "GET"
 	input.path = "/admin"
-	input.subject.roles[_] = "admin"
+	"admin" in input.subject.roles 
 }
 ```
 
 Revised rego policy with externalized role check
 ```rego
 package app.demo
+
+import future.keywords.in
 
 default allow := false
 
@@ -50,8 +54,7 @@ allow {
 
 # externalized condition to allow reuse
 is_admin {
-  # rego tries to find a value for the placeholder variable "_" that fulfills this condition 
-  input.subject.roles[_] = "admin"
+  "admin" in input.subject.roles 
 }
 ```
 
