@@ -1,5 +1,7 @@
 package authz.spring
 
+import future.keywords.in
+
 default access = {
     "allowed": false,
     "msg": "insufficient access",
@@ -66,7 +68,7 @@ allow(hint) = result {
 
 # helper to check if current user is hr staff
 is_hr_staff {
-    input.subject.roles[_] == "ROLE_HR"
+    "ROLE_HR" in input.subject.roles
 }
 
 is_owner_access {

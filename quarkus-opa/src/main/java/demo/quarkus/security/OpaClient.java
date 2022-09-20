@@ -10,12 +10,22 @@ import javax.ws.rs.PathParam;
 import static demo.quarkus.security.OpaPolicyEnforcer.AuthzRequest;
 import static demo.quarkus.security.OpaPolicyEnforcer.AuthzResponse;
 
+/**
+ * Provides a typed REST client for OPA policy API usable as Resteasy Client Proxy.
+ */
 @ApplicationScoped
 @Path("/authz/quarkus")
 @RegisterRestClient(configKey = "opa-client")
 public interface OpaClient {
 
+    /**
+     * Evaluates the given {@link AuthzRequest} in the context of the given {@code rule}.
+     *
+     * @param rule
+     * @param authzRequest
+     * @return authzResponse
+     */
     @POST
-    @Path("{scope}")
-    AuthzResponse check(@PathParam("scope") String scope, AuthzRequest authzRequest);
+    @Path("{rule}")
+    AuthzResponse check(@PathParam("rule") String rule, AuthzRequest authzRequest);
 }

@@ -13,7 +13,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @InterceptorBinding
 @Target({METHOD, TYPE})
 @Retention(RUNTIME)
-public @interface PreAuthorize {
+public @interface PreAuthz {
 
     @Nonbinding String action() default "";
 

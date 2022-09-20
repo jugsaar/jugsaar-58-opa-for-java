@@ -1,7 +1,6 @@
 package demo.quarkus.security;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import demo.quarkus.support.JsonUtil;
 import io.quarkus.security.identity.SecurityIdentity;
 import lombok.extern.jbosslog.JBossLog;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -17,12 +16,12 @@ public class OpaPolicyEnforcer {
 
     private final SecurityIdentity identity;
 
-    private final ObjectMapper objectMapper;
+    private final JsonUtil jsonUtil;
 
-    OpaPolicyEnforcer(@RestClient OpaClient opaClient, SecurityIdentity identity, ObjectMapper objectMapper) {
+    OpaPolicyEnforcer(@RestClient OpaClient opaClient, SecurityIdentity identity, JsonUtil jsonUtil) {
         this.opaClient = opaClient;
         this.identity = identity;
-        this.objectMapper = objectMapper;
+        this.jsonUtil = jsonUtil;
     }
 
     public boolean isAllowed(String action, String permission, Object resource) {
@@ -35,14 +34,14 @@ public class OpaPolicyEnforcer {
             return false;
         }
 
-        var subject = getSubjectAttributes(identity);
+        var subject = extractSubjectAttributes(identity);
         var input = new AuthzRequestInput(subject, action, permission, resource);
 
         var authzRequest = new AuthzRequest(input);
-        log.infov("Authz request:\n{0}", objectMapper.convertValue(authzRequest, ObjectNode.class).toPrettyString());
+        log.infov("Authz request:\n{0}", jsonUtil.toPrettyString(authzRequest));
 
         var authzResponse = opaClient.check("allow", authzRequest);
-        log.infov("Authz response:\n{0}", objectMapper.convertValue(authzResponse, ObjectNode.class).toPrettyString());
+        log.infov("Authz response:\n{0}", jsonUtil.toPrettyString(authzResponse));
 
         if (authzResponse == null) {
             return false;
@@ -51,7 +50,7 @@ public class OpaPolicyEnforcer {
         return Boolean.TRUE.equals(authzResponse.result());
     }
 
-    private SubjectAttributes getSubjectAttributes(SecurityIdentity identity) {
+    private SubjectAttributes extractSubjectAttributes(SecurityIdentity identity) {
 
         var username = identity.getPrincipal().getName();
         var authorities = identity.getRoles();

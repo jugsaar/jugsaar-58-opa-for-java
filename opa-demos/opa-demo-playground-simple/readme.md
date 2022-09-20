@@ -16,10 +16,28 @@ package app.demo
 
 default allow := false
 
+# allow = true if { # Assigns `true` to allow if the following conditions evaluate to true 
+#  input.method == "GET" AND
+#  input.path == "/admin" AND
+#  input.subject.name == "admin" AND
+# }
+
 allow {
-	input.method = "GET"
-	input.path = "/admin"
-	input.subject.name = "admin"
+	input.method == "GET"
+	input.path == "/admin"
+	input.subject.name == "admin"
+}
+
+# allow = true if {
+#  input.method == "GET" AND
+#  input.path == "/export" AND
+#  input.subject.name == "admin" AND
+# }
+
+allow {
+	input.method == "GET"
+	input.path == "/export"
+	input.subject.name == "admin"
 }
 ```
 
@@ -32,8 +50,8 @@ import future.keywords.in
 default allow := false
 
 allow {
-	input.method = "GET"
-	input.path = "/admin"
+	input.method == "GET"
+	input.path == "/admin"
 	"admin" in input.subject.roles 
 }
 ```
@@ -47,8 +65,8 @@ import future.keywords.in
 default allow := false
 
 allow {
-	input.method = "GET"
-	input.path = "/admin"
+	input.method == "GET"
+	input.path == "/admin"
 	is_admin
 }
 

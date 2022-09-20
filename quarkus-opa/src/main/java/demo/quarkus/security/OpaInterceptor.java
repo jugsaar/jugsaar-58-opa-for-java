@@ -8,27 +8,30 @@ import javax.interceptor.InvocationContext;
 import javax.ws.rs.ForbiddenException;
 import java.lang.reflect.Method;
 
+/**
+ * {@link OpaInterceptor} weaves the Authorization logic around methods annotated with @{@link PreAuthz}.
+ */
 @Interceptor
-@PreAuthorize
+@PreAuthz
 @RequiredArgsConstructor
 public class OpaInterceptor {
 
     private final OpaPolicyEnforcer opa;
 
     @AroundInvoke
-    public Object authorize(InvocationContext invocationContext) throws Exception {
+    public Object authorize(InvocationContext invocation) throws Exception {
 
-        var method = invocationContext.getMethod();
-        var preAuthz = method.getAnnotation(PreAuthorize.class);
+        var method = invocation.getMethod();
+        var preAuthz = method.getAnnotation(PreAuthz.class);
 
         if (preAuthz != null) {
-            preAuthorize(preAuthz, method, invocationContext.getParameters());
+            preAuthorize(preAuthz, method, invocation.getParameters());
         }
 
-        return invocationContext.proceed();
+        return invocation.proceed();
     }
 
-    private void preAuthorize(PreAuthorize preAuthz, Method method, Object[] args) {
+    private void preAuthorize(PreAuthz preAuthz, Method method, Object[] args) {
 
         var action = resolveAction(preAuthz, method);
         var permission = resolvePermission(preAuthz);
@@ -39,15 +42,7 @@ public class OpaInterceptor {
         }
     }
 
-    private String resolvePermission(PreAuthorize authz) {
-        var permission = authz.permission();
-        if (permission == null || permission.isBlank()) {
-            return null;
-        }
-        return permission;
-    }
-
-    private static String resolveAction(PreAuthorize authz, Method method) {
+    private static String resolveAction(PreAuthz authz, Method method) {
 
         var action = authz.action();
         if (action == null || action.isBlank()) {
@@ -57,7 +52,15 @@ public class OpaInterceptor {
         return action;
     }
 
-    private static Object resolveResource(PreAuthorize authz, Method method, Object[] args) {
+    private String resolvePermission(PreAuthz authz) {
+        var permission = authz.permission();
+        if (permission == null || permission.isBlank()) {
+            return null;
+        }
+        return permission;
+    }
+
+    private static Object resolveResource(PreAuthz authz, Method method, Object[] args) {
 
         var resource = authz.resource();
         if (resource == null || resource.isBlank()) {

@@ -10,6 +10,15 @@ The the request processing happens along the following chain:
 The reason for applying the authorization at the facade layer is that requests can come in through various 
 means like REST, GRPC, etc. and we want to ensure that the same authorization logic is always applied.
 
+## OPA Spring Integrations
+See https://www.openpolicyagent.org/docs/latest/ecosystem/#springsecurity-api-detail
+
+- [open-policy-agent/contrib/spring_authz](https://github.com/open-policy-agent/contrib/tree/master/spring_authz)
+- [Bisnode/opa-spring-security](https://github.com/Bisnode/opa-spring-security)
+- [build-security/opa-java-spring-client](https://github.com/build-security/opa-java-spring-client)
+- [massenz/jwt-opa](https://github.com/massenz/jwt-opa)
+- [eugenp/spring-security-opa](https://github.com/eugenp/tutorials/tree/master/spring-security-modules/spring-security-opa)
+
 # Examples
 
 ## OPA server with 'pushed' policies and data
