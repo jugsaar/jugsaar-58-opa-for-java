@@ -25,10 +25,10 @@ object User {
  permission += access:public
 }
 
-Board <|-- Manager
-Manager <|-- Employee
-Employee <|-- User
-Guest <|-- User
+Manager <|-- Board
+Employee <|-- Manager
+User <|-- Employee
+User <|-- Guest
 @enduml
 ```
 
