@@ -28,7 +28,9 @@ data to the server.
 
 First we start the OPA server container:
 ```
-docker run -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.44.0-rootless run --server
+docker run -d -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.47.0-rootless run --server --set "decision_logs.console=true"
+
+docker logs -f opa-server 2>&1 | jq  -C '.'
 ```
 
 Then we initialize the OPA server with our custom policy and some data:
@@ -50,5 +52,5 @@ Note that this example requires the `spring-opa-policy-server` to be running.
 
 First we start the OPA server container:
 ```
-docker run --net=host --rm -v $PWD/opa/config.yaml:/config.yaml openpolicyagent/opa:0.44.0-rootless run --server -c /config.yaml
+docker run --net=host --rm -v $PWD/opa/config.yaml:/config.yaml openpolicyagent/opa:0.47.0-rootless run --server -c /config.yaml
 ```

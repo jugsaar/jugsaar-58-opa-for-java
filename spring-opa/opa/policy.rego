@@ -1,8 +1,8 @@
 package authz.spring
 
+import future.keywords.in
+
 policy_version := 2
-
-
 
 default access = {
     "allowed": false,
@@ -14,7 +14,7 @@ access = result {
   # WHEN
   input.action == "read"
   input.resource.type == "salary"
-  # input.subject.roles[_] == "ROLE_HR"
+  # "ROLE_HR" in input.subject.roles
   is_hr_staff
 
   # THEN
@@ -71,7 +71,7 @@ allow(hint) = result {
 
 # helper to check if current user is hr staff
 is_hr_staff {
-    input.subject.roles[_] == "ROLE_HR"
+    "ROLE_HR" in input.subject.roles
 }
 
 is_owner_access {
@@ -80,11 +80,11 @@ is_owner_access {
 
 is_subordinate_access {
     input.resource.owner != input.subject.name
-    input.resource.owner == users_access[input.subject.name][_]
+    input.resource.owner in users_access[input.subject.name]
 }
 
 is_owner_or_subordinate_access {
-    input.resource.owner == users_access[input.subject.name][_]
+    input.resource.owner in users_access[input.subject.name]
 }
 
 

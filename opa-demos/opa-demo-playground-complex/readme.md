@@ -8,7 +8,8 @@ The examples can be executed via the [Open Policy Agent playground](https://play
 # Data
 The data for our scenario contains a role hierarchy, a mapping of roles to permissions and user role assignments.
 
-The role hiearchy and permission mapping looks like this:
+## Role hierarchy
+The role hiearchy with embedded permissions looks like this:
 ```plantuml
 @startuml
 object Board {
@@ -32,6 +33,8 @@ User <|-- Guest
 @enduml
 ```
 
+## Users
+
 In this example we have the following users:
 
 | User   | Role     |
@@ -40,6 +43,7 @@ In this example we have the following users:
 | bob    | manager  |
 | emilia | board    |
 
+## Raw Data
 
 The raw data:
 ```json

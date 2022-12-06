@@ -9,15 +9,20 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spring-opa" />
         <module name="spring-opa-policy-server" />
+        <module name="spring3-opa" />
         <module name="quarkus-opa" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jugsaar-58-opa-for-java" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="quarkus-opa" options="-parameters" />
       <module name="spring-opa" options="-parameters" />
       <module name="spring-opa-policy-server" options="-parameters" />
+      <module name="spring3-opa" options="-parameters" />
     </option>
   </component>
 </project>

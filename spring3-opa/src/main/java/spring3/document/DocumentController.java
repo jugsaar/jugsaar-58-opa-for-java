@@ -1,4 +1,4 @@
-package spring.salary;
+package spring3.document;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/salary")
+@RequestMapping("/api/documents")
 @RequiredArgsConstructor
-class SalaryController {
+class DocumentController {
 
-    private final SalaryFacade salaryFacade;
+    private final DocumentFacade documentFacade;
 
-    @GetMapping("/{username}")
-    public Salary getSalary(@PathVariable String username) {
-        return salaryFacade.getSalaryByUsername(username);
+    @GetMapping("/{id}")
+    public Document getDocument(@PathVariable long id) {
+        return documentFacade.getDocumentById(id);
     }
 }

@@ -5,12 +5,15 @@ The example can be executed via the [Open Policy Agent playground](https://play.
 
 # Policy
 
-The rego policy contains the logic to determine if a user has the required permissions to access a resource or to perform 
-an operation. 
+The rego policy contains the logic to determine if a user has the required permissions to access a resource or 
+to perform an operation. 
 
-This example policy centers around the `allow` rule. If all conditions within the `allow` rule evaluate to `true` then access is granted, otherwise denied.
+This example policy centers around the `allow` rule. If all conditions within the `allow` rule evaluate to `true`  
+then access is granted, otherwise denied.
 
-Initial rego policy with hardcoded name check:
+Initial rego policy with hardcoded name check and an example request input:
+
+Policy:
 ```rego
 package app.demo
 
@@ -38,6 +41,17 @@ allow {
 	input.method == "GET"
 	input.path == "/export"
 	input.subject.name == "admin"
+}
+```
+
+Input:
+```json
+{
+  "method": "GET",
+  "path": "/admin",
+  "subject": {
+    "name": "tom"
+  }
 }
 ```
 
