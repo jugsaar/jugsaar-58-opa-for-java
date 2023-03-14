@@ -7,7 +7,7 @@ data to the server.
 
 First we start the OPA server container:
 ```
-docker run -d -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.47.0-rootless run --server --set "decision_logs.console=true"
+docker run -d -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.50.0 run --server --set "decision_logs.console=true"
 
 docker logs -f opa-server 2>&1 | jq  -C '.'
 ```

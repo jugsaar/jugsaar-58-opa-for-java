@@ -22,6 +22,11 @@
       <option name="url" value="https://jitpack.io" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="spring-milestones" />
+      <option name="name" value="Spring Milestones" />
+      <option name="url" value="https://repo.spring.io/milestone" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="spring-releases" />
       <option name="name" value="Spring Releases" />
       <option name="url" value="https://repo.spring.io/release" />
