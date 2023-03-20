@@ -16,6 +16,9 @@ class GreetingFacade {
 
     /**
      * <pre>{@code
+     * // action derived from method name
+     * // #name -> reference to value of "name" parameter
+     *
      * @PreAuthz(resource = "#name") --> {"action": "greet", "resource": "#name"}
      * }
      * </pre>

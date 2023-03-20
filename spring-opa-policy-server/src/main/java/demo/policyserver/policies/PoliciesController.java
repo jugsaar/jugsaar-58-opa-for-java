@@ -4,10 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorOutputStream;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -25,9 +27,11 @@ import java.nio.file.Paths;
 public class PoliciesController {
 
     @GetMapping("/current/bundle.tar.gz")
-    public void currentPolicyBundle(HttpServletResponse response) throws Exception {
+    public void currentPolicyBundle(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        log.info("Fetch current bundle");
+        var userAgent = request.getHeader(HttpHeaders.USER_AGENT);
+        var remoteIp = request.getRemoteAddr();
+        log.info("Fetch current bundle from Client: {} IP: {}", userAgent, remoteIp);
 
         response.setStatus(200);
         response.setContentType("application/gzip");
