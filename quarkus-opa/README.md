@@ -1,7 +1,7 @@
 Quarkus Open Policy Agent Example
 ---
 
-docker run -d -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.50.0 run --server --set "decision_logs.console=true"
+docker run -d -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.50.1 run --server --set "decision_logs.console=true"
 
 docker logs -f opa-server 2>&1 | jq  -C '.'
 
