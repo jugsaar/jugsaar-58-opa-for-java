@@ -17,9 +17,81 @@ Policy:
 ```rego
 package app.demo
 
+import future.keywords.in
+
+default allow := false
+
+allow {
+	input.method == "GET"
+	input.path == "/public"
+}
+
+allow {
+	input.method == "GET"
+	input.path == "/admin"
+	input.subject.name == "admin"
+}
+```
+
+Inputs:
+
+```json
+{
+  "method": "GET",
+  "path": "/public",
+  "subject": {
+    "name": "tom"
+  }
+}
+```
+
+```json
+{
+  "method": "GET",
+  "path": "/admin",
+  "subject": {
+    "name": "tom"
+  }
+}
+```
+
+```json
+{
+  "method": "GET",
+  "path": "/admin",
+  "subject": {
+    "name": "admin"
+  }
+}
+```
+
+```json
+{
+  "method": "GET",
+  "path": "/admin",
+  "subject": {
+    "name": "bob"
+  }
+}
+```
+
+Policy with comments
+```rego
+package app.demo
+
 default allow := false
 
 # allow = true if { # Assigns `true` to allow if the following conditions evaluate to true 
+#  input.method == "GET" AND
+#  input.path == "/public"
+# }
+
+allow {
+	input.method == "GET"
+	input.path == "/public"
+}
+
+# allow = true if {
 #  input.method == "GET" AND
 #  input.path == "/admin" AND
 #  input.subject.name == "admin" AND
@@ -29,29 +101,6 @@ allow {
 	input.method == "GET"
 	input.path == "/admin"
 	input.subject.name == "admin"
-}
-
-# allow = true if {
-#  input.method == "GET" AND
-#  input.path == "/export" AND
-#  input.subject.name == "admin" AND
-# }
-
-allow {
-	input.method == "GET"
-	input.path == "/export"
-	input.subject.name == "admin"
-}
-```
-
-Input:
-```json
-{
-  "method": "GET",
-  "path": "/admin",
-  "subject": {
-    "name": "tom"
-  }
 }
 ```
 
@@ -81,12 +130,12 @@ default allow := false
 allow {
 	input.method == "GET"
 	input.path == "/admin"
-	is_admin
+	is_admin(input.subject)
 }
 
 # externalized condition to allow reuse
-is_admin {
-  "admin" in input.subject.roles 
+is_admin(subject) {
+  "admin" in subject.roles 
 }
 ```
 

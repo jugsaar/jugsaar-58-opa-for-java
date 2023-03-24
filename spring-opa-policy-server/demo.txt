@@ -1,0 +1,28 @@
+
+tmux
+
+# window 1
+java -jar target/spring-opa-policy-server-0.0.1-SNAPSHOT.jar
+
+# window 2
+opa run \
+  --set "bundles.cli1.polling.min_delay_seconds=10" \
+  --set "bundles.cli1.polling.max_delay_seconds=20" \
+  http://localhost:8182/service/v1/policies/current/bundle.tar.gz
+
+# Show data.json
+cat opa/authz/spring/users/data.json
+
+# Query users
+
+# Add new user
+```
+  {"name": "tom", "subordinates": []}
+```
+
+# Query users
+
+data.authz.spring.users
+
+# exit
+exit

@@ -8,16 +8,22 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * Allows to great users
+ *
+ * /hello        -> greet "current" user
+ * /hello/{user}  -> greet {user}
+ */
 @Path("/hello")
 public class GreetingResource {
 
     private final SecurityIdentity identity;
 
-    private final GreetingFacade greetingFacade;
+    private final GreetingService greetingService;
 
-    public GreetingResource(SecurityIdentity identity, GreetingFacade greetingFacade) {
+    public GreetingResource(SecurityIdentity identity, GreetingService greetingService) {
         this.identity = identity;
-        this.greetingFacade = greetingFacade;
+        this.greetingService = greetingService;
     }
 
     /**
@@ -40,6 +46,6 @@ public class GreetingResource {
     @Path(("{name}"))
     @Produces(MediaType.TEXT_PLAIN)
     public String greet(@PathParam("name") String name) {
-        return greetingFacade.greet(name);
+        return greetingService.greet(name);
     }
 }

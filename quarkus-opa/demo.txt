@@ -1,0 +1,16 @@
+
+docker run -d -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.50.1 run --server --set "decision_logs.console=true"
+
+cd quarkus-opa
+
+curl -X PUT --data-binary @opa/policy.rego  localhost:8181/v1/policies/authz/quarkus
+
+
+curl -v --user tester:tester http://localhost:8090/hello
+curl -v --user tester:tester http://localhost:8090/hello/javaland
+
+curl -v --user admin:admin http://localhost:8090/hello
+curl -v --user admin:admin http://localhost:8090/hello/javaland
+
+
+#docker rm -f opa-server

@@ -12,7 +12,7 @@ The data for our scenario contains a role hierarchy, a mapping of roles to permi
 The role hiearchy with embedded permissions looks like this:
 ```plantuml
 @startuml
-object Board {
+object BoardMember {
  permission += access:secret
 }
 object Manager {
@@ -26,7 +26,7 @@ object User {
  permission += access:public
 }
 
-Manager <|-- Board
+Manager <|-- BoardMember
 Employee <|-- Manager
 User <|-- Employee
 User <|-- Guest
