@@ -17,22 +17,16 @@ public @interface PreAuthz {
 
     /**
      * The action of the authorization query. Defaults to method name.
-     *
-     * @return
      */
     @Nonbinding String action() default "";
 
     /**
      * Optional resource for the authorization query. Supports resolving of named parameter values via {@code #paramName}.
-     *
-     * @return
      */
     @Nonbinding String resource() default "";
 
     /**
      * Optional logical permission that should be associated with the authorization query.
-     *
-     * @return
      */
     @Nonbinding String permission() default "";
 }

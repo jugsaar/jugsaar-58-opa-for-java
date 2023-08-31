@@ -2,7 +2,7 @@ Open Policy Agent Demo
 ---
 
 # Start OPA Server
-docker run -p 8181:8181 --rm --name opa-server -d openpolicyagent/opa:0.50.1 run --server --set "decision_logs.console=true"
+docker run -p 8181:8181 --rm --name opa-server -d openpolicyagent/opa:0.55.0 run --server --set "decision_logs.console=true"
 
 # Populate Policies
 curl -X PUT --data-binary @policy.rego  localhost:8181/v1/policies/authz

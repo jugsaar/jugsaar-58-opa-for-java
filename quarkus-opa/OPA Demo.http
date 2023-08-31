@@ -1,0 +1,16 @@
+# OPA Demos
+
+###
+# @name Greet self - User:tester
+GET http://localhost:8090/hello/tester
+Authorization: Basic tester tester
+
+###
+# @name Greet other - User:tester
+GET http://localhost:8090/hello/other
+Authorization: Basic tester tester
+
+###
+# @name Greet other - User:admin
+GET http://localhost:8090/hello/other
+Authorization: Basic admin admin

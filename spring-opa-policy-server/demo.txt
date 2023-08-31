@@ -17,7 +17,7 @@ cat opa/authz/spring/users/data.json
 
 # Add new user
 ```
-  {"name": "tom", "subordinates": []}
+{"name": "tom", "subordinates": ["john"]}
 ```
 
 # Query users

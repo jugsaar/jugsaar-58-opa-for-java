@@ -4,7 +4,7 @@ Quarkus Open Policy Agent Example
 cd quarkus-opa
 
 # Start OPA Container
-docker run -d -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.50.1 run --server --set "decision_logs.console=true"
+docker run -d -p 8181:8181 --rm --name opa-server openpolicyagent/opa:0.55.0 run --server --set "decision_logs.console=true"
 
 # Push policies
 curl -X PUT --data-binary @opa/policy.rego  localhost:8181/v1/policies/authz/quarkus

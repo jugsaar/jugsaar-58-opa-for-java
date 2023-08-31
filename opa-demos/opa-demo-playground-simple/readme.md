@@ -40,7 +40,8 @@ Inputs:
   "method": "GET",
   "path": "/public",
   "subject": {
-    "name": "tom"
+    "name": "tom",
+    "roles": []
   }
 }
 ```
@@ -50,7 +51,8 @@ Inputs:
   "method": "GET",
   "path": "/admin",
   "subject": {
-    "name": "tom"
+    "name": "tom",
+    "roles": []
   }
 }
 ```
@@ -60,7 +62,8 @@ Inputs:
   "method": "GET",
   "path": "/admin",
   "subject": {
-    "name": "admin"
+    "name": "admin",
+    "roles": []
   }
 }
 ```
@@ -70,7 +73,8 @@ Inputs:
   "method": "GET",
   "path": "/admin",
   "subject": {
-    "name": "bob"
+    "name": "bob",
+    "roles": []
   }
 }
 ```
@@ -150,7 +154,8 @@ Can user `tom` access admin area?
   "method": "GET",
   "path": "/admin",
   "subject": {
-    "name": "tom"
+    "name": "tom",
+    "roles": ["user"]
   }
 }
 ```
@@ -162,7 +167,8 @@ Can user `admin` access admin area?
   "method": "GET",
   "path": "/admin",
   "subject": {
-    "name": "admin"
+    "name": "admin",
+    "roles": ["admin"]
   }
 }
 ```
